@@ -27,7 +27,7 @@ class MainViewModel(private val apiService: ApiService, private val themeUseCase
     }
 
     init {
-        fetchGithubUsers("google")
+        fetchGithubUsers("John")
     }
 
     suspend fun searchGithubParamName(query: String): Flow<List<UserItem>> = flow {
