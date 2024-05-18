@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.bangkitacademy.githubuserapp.core.data.source.remote.retrofit.ApiService
 import com.bangkitacademy.githubuserapp.core.domain.model.UserItem
@@ -27,7 +26,7 @@ class MainViewModel(private val apiService: ApiService, private val themeUseCase
     }
 
     init {
-        fetchGithubUsers("John")
+        fetchGithubUsers("google")
     }
 
     suspend fun searchGithubParamName(query: String): Flow<List<UserItem>> = flow {
@@ -59,13 +58,13 @@ class MainViewModel(private val apiService: ApiService, private val themeUseCase
         return themeUseCase.getThemeSetting()
     }
 
-    class ViewModelFactory(private val apiService: ApiService, private val themeUseCase: ThemeUseCase) : ViewModelProvider.NewInstanceFactory() {
-        @Suppress("UNCHECKED_CAST")
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-                return MainViewModel(apiService, themeUseCase) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel Class: " + modelClass.name)
-        }
-    }
+//    class ViewModelFactory(private val apiService: ApiService, private val themeUseCase: ThemeUseCase) : ViewModelProvider.NewInstanceFactory() {
+//        @Suppress("UNCHECKED_CAST")
+//        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+//                return MainViewModel(apiService, themeUseCase) as T
+//            }
+//            throw IllegalArgumentException("Unknown ViewModel Class: " + modelClass.name)
+//        }
+//    }
 }
