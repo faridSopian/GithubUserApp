@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/themeMenu"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/theme_setting"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/favuserMenu"
+        android:icon="@drawable/ic_fav_user"
+        android:title="@string/favorite"
+        app:drawableTint="?attr/colorControlNormal"
+        app:showAsAction="ifRoom" />
+</menu>
