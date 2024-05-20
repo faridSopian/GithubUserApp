@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String", "apiKey", "\"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\"")
+        buildConfigField("String", "apiKey", "\"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\"")
         buildConfigField("String", "baseUrl", "\"https://api.github.com/\"")
     }
 

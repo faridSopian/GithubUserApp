@@ -6,7 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
-import com.bangkitacademy.githubuserapp.R
 import com.google.android.material.switchmaterial.SwitchMaterial
 import org.koin.android.ext.android.get
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -26,10 +25,6 @@ class ThemeActivity : AppCompatActivity() {
 
         val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
-//        val pref = SettingPreferences.getInstance(application.dataStore)
-//        val themeViewModel = ViewModelProvider(this, ThemeViewModel.ViewModelFactory(pref)).get(
-//            ThemeViewModel::class.java
-//        )
         themeViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
