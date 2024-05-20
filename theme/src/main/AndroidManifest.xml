@@ -14,7 +14,7 @@
     </dist:module>
 
     <application>
-        <activity android:name=".ThemeActivity" android:exported="false"
+        <activity android:name=".ThemeActivity" android:exported="true"
             tools:ignore="AppLinkUrlError">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

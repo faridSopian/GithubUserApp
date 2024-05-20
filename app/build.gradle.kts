@@ -56,12 +56,14 @@ android {
         viewBinding = true
         buildConfig = true
     }
+
     dynamicFeatures += setOf(":theme")
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":core"))
+    implementation("androidx.core:core-splashscreen:1.0.1")
     testImplementation("junit:junit:4.13.2")
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 }
