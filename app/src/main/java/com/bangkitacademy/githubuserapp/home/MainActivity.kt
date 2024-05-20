@@ -1,10 +1,14 @@
 package com.bangkitacademy.githubuserapp.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkitacademy.githubuserapp.R
@@ -15,6 +19,8 @@ import com.bangkitacademy.githubuserapp.core.domain.model.UserItem
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var broadcastReceiver: BroadcastReceiver
 
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModel()
@@ -83,6 +89,40 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun registerBroadCastReceiver() {
+        broadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+                when (intent.action) {
+                    Intent.ACTION_POWER_CONNECTED -> {
+                        showToast(getString(R.string.power_connected))
+                    }
+                    Intent.ACTION_POWER_DISCONNECTED -> {
+                        showToast(getString(R.string.power_disconnected))
+                    }
+                }
+            }
+        }
+        val intentFilter = IntentFilter().apply {
+            addAction(Intent.ACTION_POWER_CONNECTED)
+            addAction(Intent.ACTION_POWER_DISCONNECTED)
+        }
+        registerReceiver(broadcastReceiver, intentFilter)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        registerBroadCastReceiver()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unregisterReceiver(broadcastReceiver)
     }
 
     private fun checkAvailableUser(isDataNotFound: Boolean) {

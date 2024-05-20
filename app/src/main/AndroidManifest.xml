@@ -18,9 +18,6 @@
         android:theme="@style/Theme.RestaurantReview"
         tools:targetApi="34">
         <activity
-            android:name=".theme.ThemeActivity"
-            android:exported="false" />
-        <activity
             android:name=".favorite.FavoriteActivity"
             android:exported="false" />
         <activity

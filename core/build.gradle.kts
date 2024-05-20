@@ -19,13 +19,21 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String", "apiKey", "\"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\"")
+        buildConfigField("String", "apiKey", "\"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\"")
         buildConfigField("String", "baseUrl", "\"https://api.github.com/\"")
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+
+        debug {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,7 +79,11 @@ dependencies {
     implementation("io.insert-koin:koin-android:2.1.6")
     implementation("io.insert-koin:koin-android-viewmodel:2.1.6")
 
+    implementation("net.zetetic:android-database-sqlcipher:4.4.0")
+    implementation("androidx.sqlite:sqlite-ktx:2.1.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.annotation:annotation:1.7.1")
 }
